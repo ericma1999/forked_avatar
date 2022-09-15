@@ -18,7 +18,7 @@ import edu.lu.uni.serval.config.Configuration;
 public class Main {
 
 	public static void main(String[] args) {
-		if (args.length != 5) {
+		if (args.length != 6) {
 			System.out.println("Arguments: <Buggy_Project_Path> <defects4j_Path> <Bug_ID> <FL_Metric>");
 			System.exit(0);
 		}
@@ -31,6 +31,7 @@ public class Main {
 		Configuration.outputPath += "FL/";
 		System.out.println(projectName);
 		Configuration.datasetCommandAndCompilePath = args[4];
+		Configuration.suspPositionsFilePath = args[5];
 		fixBug(buggyProjectsPath, defects4jPath, projectName);
 	}
 

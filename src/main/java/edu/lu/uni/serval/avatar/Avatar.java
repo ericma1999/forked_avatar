@@ -178,13 +178,19 @@ public class Avatar extends AbstractFixer {
 	}
 	
 	private void generatePatches(FixTemplate ft, SuspCodeNode scn) {
+		System.out.println("suspicious code string");
+		System.out.println(scn.suspCodeStr);
 		ft.setSuspiciousCodeStr(scn.suspCodeStr);
 		ft.setSuspiciousCodeTree(scn.suspCodeAstNode);
 		if (scn.javaBackup == null) ft.setSourceCodePath(dp.srcPath);
 		else ft.setSourceCodePath(dp.srcPath, scn.javaBackup);
 		ft.generatePatches();
 		List<Patch> patchCandidates = ft.getPatches();
-		
+
+		for (Patch patch: patchCandidates) {
+			System.out.println("candidates");
+			System.out.println(patch.getFixedCodeStr1());
+		}
 		// Test generated patches.
 		if (patchCandidates.isEmpty()) return;
 		testGeneratedPatches(patchCandidates, scn);

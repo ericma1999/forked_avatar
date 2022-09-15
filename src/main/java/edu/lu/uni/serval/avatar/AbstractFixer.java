@@ -227,10 +227,14 @@ public abstract class AbstractFixer implements IFixer {
 	protected void testGeneratedPatches(List<Patch> patchCandidates, SuspCodeNode scn) {
 		// Testing generated patches.
 		for (Patch patch : patchCandidates) {
+			System.out.println("Recovering");
+//			TestUtils.recoverWithGitCmd(fullBuggyProjectPath);
 			patch.buggyFileName = scn.suspiciousJavaFile;
 			if (this.triedPatchCandidates.contains(patch)) continue;
 
 			patchId++;
+
+
 
 			addPatchCodeToFile(scn, patch);// Insert the patch.
 			String buggyCode = patch.getBuggyCodeStr();
@@ -336,6 +340,7 @@ public abstract class AbstractFixer implements IFixer {
 		}
 
 		try {
+			System.out.println("Deleting the old file");
 			scn.targetJavaFile.delete();
 			scn.targetClassFile.delete();
 			Files.copy(scn.javaBackup.toPath(), scn.targetJavaFile.toPath());

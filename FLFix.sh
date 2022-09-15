@@ -12,5 +12,6 @@ metric=Ochiai
 # The buggy project ID: e.g., Chart_1
 bugId=$3
 datasetCommandAndCompilePath=$5
+suspiciousCodePath=$6
 
-java -cp "target/dependency/*" edu.lu.uni.serval.main.Main $d4jData $d4jPath $bugId $metric $datasetCommandAndCompilePath
+java -cp "target/dependency/*" edu.lu.uni.serval.main.Main $d4jData $d4jPath $bugId $metric $datasetCommandAndCompilePath $suspiciousCodePath

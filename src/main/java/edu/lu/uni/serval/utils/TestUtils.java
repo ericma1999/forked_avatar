@@ -17,6 +17,7 @@ public class TestUtils {
         String testResult = getDefects4jResult(projectName, defects4jPath, "test");
         System.out.println("this is the test result");
         System.out.println(testResult);
+        System.out.println(testResult);
 
         Pattern pattern = Pattern.compile(".*Tests run: (\\d+), Failures: (\\d+), Errors: (\\d+).*");
 
@@ -102,6 +103,7 @@ public class TestUtils {
 	public static int compileProjectWithDefects4j(String projectName, String defects4jPath) {
 		String compileResults = getDefects4jResult(projectName, defects4jPath, "compile");
 		String[] lines = compileResults.split("\n");
+        System.out.println(compileResults);
 		if (lines.length != 2) return 1;
         for (String lineString: lines){
         	if (!lineString.endsWith("OK")) return 1;
@@ -173,7 +175,8 @@ public class TestUtils {
 	public static String recoverWithGitCmd(String projectName) {
 		try {
 			String buggyProject = projectName.substring(projectName.lastIndexOf("/") + 1);
-            ShellUtils.shellRun(Arrays.asList("cd " + projectName + "\n", "git checkout -- ."), buggyProject);
+            System.out.println("Will be recovering" + projectName);
+            ShellUtils.shellRun(Arrays.asList("cd " + projectName + "\n", "git reset HEAD --hard"), buggyProject);
             return "";
         } catch (IOException e){
             return "Failed to recover.";
