@@ -49,7 +49,7 @@ public class FL {
 			return;
 		}
 
-		String[] elements = buggyProject.split("_");
+		String[] elements = buggyProject.split("-");
 		try {
 			Integer.valueOf(elements[1]);
 		} catch (NumberFormatException e) {
